@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_perguntas/resposta.dart';
 import './Questionario.dart';
 import 'resultado.dart';
 
-void main() => runApp(new PerguntasApp());
+void main() => runApp(PerguntasApp());
 
 class _PerguntaAppState extends State<PerguntasApp> {
   var _perguntaSelecionada = 0;
 
-  final List<Map<String, Object>> _perguntas = const [
+  final _perguntas = const [
     {
       'texto': "Qual é a sua cor favorita?",
-      'resposta': ['Preto', 'Vermelho', 'Verde', 'Branco']
+      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco']
     },
     {
       'texto': "Qual é o seu animal favorito?",
-      'resposta': ['coelho', 'Cobra', 'Elefante', 'Leão']
+      'respostas': ['coelho', 'Cobra', 'Elefante', 'Leão']
     },
     {
       'texto': "Qual é o seu instrutor favorito?",
-      'resposta': ['MAria', 'Joao', 'Leo', 'Pedro']
+      'respostas': ['MAria', 'Joao', 'Leo', 'Pedro']
     }
   ];
 
@@ -41,13 +40,14 @@ class _PerguntaAppState extends State<PerguntasApp> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Perguntas e Respostas"),
-          backgroundColor: Color.fromRGBO(65, 105, 225, 100),
+          backgroundColor: Colors.blue,
         ),
         body: temPerguntaSelecionada
             ? Questionario(
                 perguntas: _perguntas,
                 perguntaSelecionada: _perguntaSelecionada,
-                responder: _responder)
+                quandoResponder: _responder,
+              )
             : const Resultado(),
       ),
     );
@@ -55,6 +55,8 @@ class _PerguntaAppState extends State<PerguntasApp> {
 }
 
 class PerguntasApp extends StatefulWidget {
+  const PerguntasApp({super.key});
+
   @override
   _PerguntaAppState createState() {
     return _PerguntaAppState();
