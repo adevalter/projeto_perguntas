@@ -1,46 +1,47 @@
 import 'package:flutter/material.dart';
-import './Questionario.dart';
+import './questionario.dart';
 import 'resultado.dart';
 
 void main() => runApp(PerguntasApp());
 
 class _PerguntaAppState extends State<PerguntasApp> {
   var _perguntaSelecionada = 0;
-
+  int _pontuacaoTotal = 0;
   final _perguntas = const [
     {
       'texto': "Qual é a sua cor favorita?",
       'respostas': [
-        {'texto': 'Preto', 'nota': 10},
-        {'texto': 'Vermelho', 'nota': 5},
-        {'texto': 'Verde', 'nota': 3},
-        {'texto': 'Branco', 'nota': 1},
+        {'texto': 'Preto', 'pontuacao': 10},
+        {'texto': 'Vermelho', 'pontuacao': 5},
+        {'texto': 'Verde', 'pontuacao': 3},
+        {'texto': 'Branco', 'pontuacao': 1},
       ],
     },
     {
       'texto': "Qual é o seu animal favorito?",
       'respostas': [
-        {'texto': 'Coelho', 'nota': 10},
-        {'texto': 'Cobra', 'nota': 5},
-        {'texto': 'Elefante', 'nota': 5},
-        {'texto': 'Leão', 'nota': 5},
+        {'texto': 'Coelho', 'pontuacao': 10},
+        {'texto': 'Cobra', 'pontuacao': 5},
+        {'texto': 'Elefante', 'pontuacao': 5},
+        {'texto': 'Leão', 'pontuacao': 5},
       ],
     },
     {
       'texto': "Qual é o seu instrutor favorito?",
       'respostas': [
-        {'texto': 'MAria', 'nota': 5},
-        {'texto': 'Joao', 'nota': 7},
-        {'texto': 'Leo', 'nota': 8},
-        {'texto': 'Pedro', 'nota': 2},
+        {'texto': 'MAria', 'pontuacao': 5},
+        {'texto': 'Joao', 'pontuacao': 7},
+        {'texto': 'Leo', 'pontuacao': 8},
+        {'texto': 'Pedro', 'pontuacao': 2},
       ],
     }
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
   }
@@ -63,7 +64,7 @@ class _PerguntaAppState extends State<PerguntasApp> {
                 perguntaSelecionada: _perguntaSelecionada,
                 quandoResponder: _responder,
               )
-            : const Resultado(),
+            : Resultado(_pontuacaoTotal),
       ),
     );
   }
