@@ -21,9 +21,9 @@ class _PerguntaAppState extends State<PerguntasApp> {
       'texto': "Qual é o seu animal favorito?",
       'respostas': [
         {'texto': 'Coelho', 'pontuacao': 10},
-        {'texto': 'Cobra', 'pontuacao': 5},
-        {'texto': 'Elefante', 'pontuacao': 5},
-        {'texto': 'Leão', 'pontuacao': 5},
+        {'texto': 'Cobra', 'pontuacao': 2},
+        {'texto': 'Elefante', 'pontuacao': 1},
+        {'texto': 'Leão', 'pontuacao': 3},
       ],
     },
     {
@@ -46,6 +46,13 @@ class _PerguntaAppState extends State<PerguntasApp> {
     }
   }
 
+  void _reiniciarQuetionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
+  }
+
   bool get temPerguntaSelecionada {
     return _perguntaSelecionada < _perguntas.length;
   }
@@ -64,7 +71,7 @@ class _PerguntaAppState extends State<PerguntasApp> {
                 perguntaSelecionada: _perguntaSelecionada,
                 quandoResponder: _responder,
               )
-            : Resultado(_pontuacaoTotal),
+            : Resultado(_pontuacaoTotal, _reiniciarQuetionario),
       ),
     );
   }
